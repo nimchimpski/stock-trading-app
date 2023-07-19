@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    index
+{% endblock %}
+
+{% block main %}
+
+  <h6 class="text-start">you are logged in as {{ username }}</h6>
+
+  <table class="table table-sm table-hover table-dark text-start border">
+  <thead>
+      <tr>
+        <th scope="col">stock</th>
+        <th scope="col">shares</th>
+        <th scope="col">price</th>
+        <th scope="col">value</th>
+        <th scope="col">buy</th>
+        <th scope="col">sell</th>
+        <th scope="col">quantity</th>
+        <th scope="col">new trade</th>
+      </tr>
+    </thead>
+    <tbody >
+      {% for share in sharesheld %}
+      <tr>
+        <th scope="row">{{ share['stock'] }}</th>
+        <td>{{ share['SUM(quantity)'] }}</td>
+        <td>{{ share['price'] | usd }}</td>
+        <td>{{ share['value'] | usd }}</td>
+          <form action="/" method="post" >
+            <td><input  type="radio" id="buy" name="trade" value="buy" autofocus ><label for="buy">buy</label></td>
+          <td>
+
+            <input type="radio" id="sell" name="trade" value="sell"><label>sell</label>
+          </td>
+
+
+        <td> <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="quantity" placeholder="quantity" type="number" min="0"></td>
+        <td><button class="btn btn-primary" type="submit"> trade</button>
+       </td>
+       <input name="stock" type="hidden" value="{{ share['stock'] }}">
+       <input name="quantityowned" type="hidden" value="{{ share['SUM(quantity)'] }}">
+       <input name="price" type="hidden" value="{{ share['price'] }}">
+       <input name="cash" type="hidden" value="{{ cash }}">
+
+      </form>
+      </tr>
+
+      {% endfor %}
+      <tr>
+        <th scope="row">TOTAL SHARES VALUE</th>
+        <td></td>
+        <td></td>
+        <td>{{ totalsharesval | usd }}</td>
+      </tr>
+      <tr>
+        <th scope="row">CASH
+        </th>
+        <td></td>
+        <td></td>
+        <td>{{ cash | usd}}</td>
+      </tr> <tr>
+        <th scope="row">GRAND TOTAL</th>
+        <td></td>
+        <td></td>
+        <td>{{ grandtotal | usd }}</td>
+      </tr>
+
+
+    </tbody>
+  </table>
+{% endblock %}

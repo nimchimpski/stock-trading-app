@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    history
+{% endblock %}
+
+{% block main %}
+<table class="table border">
+    <thead>
+      <tr>
+        <th scope="col">date</th>
+        <th scope="col">stock</th>
+        <th scope="col">trade</th>
+
+        <th scope="col">price</th>
+        <th scope="col">quantity</th>
+
+        <th scope="col">total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for trade in history %}
+      <tr>
+        <th scope="row">{{ trade['date'] }}</th>
+        <td>{{ trade['stock'] }}</td>
+        <td>{{ trade['trade'] }}</td>
+        <td>{{ trade['price'] | usd }}</td>
+        <td>{{ trade['quantity'] }}</td>
+
+        <td>{{ trade['total'] | usd }}</td>
+      </tr>
+      {% endfor %}
+
+
+    </tbody>
+  </table>
+{% endblock %}
+

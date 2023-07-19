@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+<table class="table table-hover table-dark">
+<thead>
+    <tr>
+    <th scope="col">name</th>
+    <th scope="col">price</th>
+</tr>
+
+</head>
+<tbody>
+    <tr>
+        <th scope="row">{{ quote["name"] }}</th>
+        <td>{{ quote["price"] | usd }}</td>
+        <!-- <td>{{ quote["symbol"] }}</td> -->
+    </tr>
+</tbody>
+</table>
+
+
+
+
+{% endblock %}
+
+
